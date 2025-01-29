@@ -7,19 +7,19 @@ pip install  --upgrade "transformers"   "datasets"  "accelerate"  "evaluate"  "b
 
 pip install aiohttp numpy tqdm pytest torch
 
-cd ../code_generation
+cd ../code_full_examples
 
 
-mkdir tutorial
+mkdir tutorial1
 
 
 ## If you want to do 20 completion for each sample for all the samples,
-python3 automodel.py --name "facebook/incoder-6B" --root-dataset humaneval --lang java --temperature 0.2 --batch-size 20 --completion-limit 20 --output-dir-prefix tutorial --input-limit 5
+python3 automodel1.py --name "facebook/incoder-6B" --root-dataset humaneval --lang java --temperature 0.2 --batch-size 10 --completion-limit 20 --output-dir-prefix tutorial1 --input-limit 79
 
 cd ../evaluation/src
 
 ## Evaluate
-python3 main.py --dir ../code_generation/tutorial --output-dir ../code_generation/tutorial --recursive
+python3 main.py --dir /home/mtpgai23/evaluation_full_examples/code_full_examples/tutorial1/humaneval-java-facebook_incoder_6B-0.2-reworded --output-dir /home/mtpgai23/evaluation_full_examples/code_full_examples/tutorial1/humaneval-java-facebook_incoder_6B-0.2-reworded --recursive
 
 
 cd ../
@@ -28,5 +28,5 @@ cd ../
 cd ../
 
 ## Get the score
-!python3 pass_k.py ./tutorial/*
+python3 pass_k.py ./tutorial1/*
 
